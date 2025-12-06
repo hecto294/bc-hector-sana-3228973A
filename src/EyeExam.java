@@ -82,7 +82,7 @@ public class EyeExam {
 
     public void showExamInfo() {
         System.out.println("\n=== EYE EXAM INFORMATION ===");
-        System.out.println("Patient: " + patient.getName());
+        System.out.println("Patient: " + patient.getPatientInfo());
         System.out.println("Date: " + (examDate == null ? "Not scheduled" : examDate));
         System.out.println("Exam Type: " + examType);
         System.out.println("Cost: $" + examCost);

@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class ClinicManager {
 
-   
+
     private String clinicName;
     private ArrayList<Appointment> appointments;
 
@@ -45,7 +46,7 @@ public class ClinicManager {
         Iterator<Appointment> it = appointments.iterator();
         while (it.hasNext()) {
             Appointment a = it.next();
-            if (date.equals(a.getDate())) {
+            if (date.equals(a.getClass())) {
                 it.remove();
                 return true;
             }
@@ -65,7 +66,7 @@ public class ClinicManager {
         }
         for (Appointment app : appointments) {
             System.out.println("----------------------------");
-            System.out.println(app.getSummary());
+            System.out.println(app.getClass());
         }
     }
 
@@ -75,7 +76,7 @@ public class ClinicManager {
             return found;
         }
         for (Appointment a : appointments) {
-            if (a.getPatient().getIdNumber().equals(idNumber)) {
+            if (a.getClass().getName().equals(idNumber)) {
                 found.add(a);
             }
         }
@@ -84,6 +85,19 @@ public class ClinicManager {
 
 
     private boolean isValidString(String s) {
-        return s != null && s.trim().length() > 0;
+        return s != null && !s.trim().isEmpty();
+    }
+    public void miMetodo() {
+        String date = null; // Declaración en el ámbito del método
+
+        int algunValor = 0;
+        if (algunValor > 0) {
+            date = "2025-01-01"; // Asignación dentro del 'if'
+        } else {
+            date = "Valor por defecto";
+        }
+
+        // ✅ Ahora 'date' es visible
+        System.out.println(date);
     }
 }
