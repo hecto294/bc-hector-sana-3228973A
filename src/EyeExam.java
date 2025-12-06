@@ -29,4 +29,8 @@ public class EyeExam {
     public double calculateTax() {
         return examCost * 0.19;
     }
+
+    public String getExamType() {
+        return null;
+    }
 }
