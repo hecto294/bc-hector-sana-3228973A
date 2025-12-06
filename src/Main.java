@@ -1,27 +1,16 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("=== OPHTHALMOLOGY CLINIC SYSTEM ===\n");
-        Patient p1 = new Patient("Ana Lopez", "1020456789", 30, false, 85000);
-        Patient p2 = new Patient("Robert Miller", "87878787", 68, true, 95000);
+        Employee[] employees = new Employee[3];
 
-        p1.showInfo();
-        System.out.println();
-        p2.showInfo();
+        employees[0] = new EmployeeFullTime("Ana", "E001", 2000000, 5);
+        employees[1] = new EmployeeContract("Luis", "E002", 1500000, 6);
+        employees[2] = new EmployeeFullTime("Maria", "E003", 2500000, 3);
 
-        System.out.println("\nDiscount for Patient 1: $" + p1.calculateDiscount());
-        System.out.println("Discount for Patient 2: $" + p2.calculateDiscount());
-        EyeExam exam1 = new EyeExam("2025-03-10", "Retina Scan", 120000, p1);
-        EyeExam exam2 = new EyeExam("2025-03-11", "Vision Test", 90000, p2);
-        exam1.showExamInfo();
-        System.out.println("Tax (IVA): $" + exam1.calculateTax());
-
-        System.out.println();
-        exam2.showExamInfo();
-        System.out.println("Tax (IVA): $" + exam2.calculateTax());
+        for (Employee emp : employees) {
+            emp.showInfo();
+            System.out.println("Salary: $" + emp.calculateSalary());
+            System.out.println("---------------------");
+        }
     }
 }
-
-
-
-
