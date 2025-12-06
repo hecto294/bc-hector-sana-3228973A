@@ -1,35 +1,55 @@
+import abstractas.MedicalService;
+import implementaciones.EyeSurgery;
+import implementaciones.OphthalmologyConsultation;
+import implementaciones.OpticalExam;
+import interfaces.Payable;
+import interfaces.Reportable;
+import interfaces.Schedulable;
+
 public class Main {
     public static void main(String[] args) {
 
+        System.out.println("=== OPHTHALMOLOGY CLINIC SYSTEM ===\n");
 
-        Patient generalPatient = new Patient("Daniel Torres", 40, "P001");
+        // Polymorphism with abstract class
+        MedicalService[] services = new MedicalService[3];
 
-        OphthalmologyPatient eyePatient =
-                new OphthalmologyPatient("Laura Medina", 29, "P002", "Myopia");
+        services[0] = new OphthalmologyConsultation(
+                "General Consultation", 80, "Dr. Morales", 30, true);
 
-        Patient polyPatient = new OphthalmologyPatient("Samuel Diaz", 35, "P003", "Cataract");
+        services[1] = new EyeSurgery(
+                "Cataract Surgery", 1500, "Dr. Ramirez", 90, 300);
 
-        Ophthalmologist doctor = new Ophthalmologist("Dr. Herrera");
+        services[2] = new OpticalExam(
+                "Basic Optical Exam", 50, "Dr. Lopez", true);
 
+        // Demonstration
+        for (MedicalService s : services) {
+            s.showBasicInfo();
+            System.out.println(s.getDetailedDescription());
+            System.out.println("Final Cost: $" + s.calculateFinalCost());
+            System.out.println("----------------------------------------");
+        }
 
-        Appointment appointment = new Appointment();
+        System.out.println("\n=== INTERFACE DEMO ===");
 
+        // Schedulable example
+        Schedulable schedulable = new OphthalmologyConsultation(
+                "Control Consultation", 70, "Dr. Vega", 20, true);
 
+        schedulable.schedule("John Doe", "2025-01-15");
 
-        appointment.createAppointment("Laura Medina");
-        appointment.createAppointment("Laura Medina", "2025-01-12");
-        appointment.createAppointment("Laura Medina", "2025-01-12", "Herrera");
+        // Payable example
+        Payable payable = new EyeSurgery(
+                "Laser Surgery", 1200, "Dr. Martinez", 60, 200);
 
+        System.out.println("Discount eligible? " + payable.isEligibleForDiscount());
+        System.out.println("Invoice: " + payable.generateInvoice());
 
-        System.out.println(generalPatient.getPatientInfo());
-        System.out.println(eyePatient.getPatientInfo());
-        System.out.println(polyPatient.getPatientInfo());
+        // Reportable example
+        Reportable reportable = new OpticalExam(
+                "Advanced Exam", 75, "Dr. Lopez", false);
 
-
-
-        doctor.performEyeExam(generalPatient);
-        doctor.performEyeExam(eyePatient);
-
-        System.out.println(doctor.getDoctorInfo());
+        System.out.println(reportable.generateMedicalReport());
     }
 }
